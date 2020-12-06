@@ -7,20 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
+@RequestMapping("birdspotting")
 public class BirdSpottingController {
-
-    private static final String CONTROLLER_NAME = "birdspotting";
-    private static final String ADD_ACTION = "create-new-spotting";
 
     @Autowired
     private final SpottedBirdService birdService;
@@ -29,7 +24,7 @@ public class BirdSpottingController {
         this.birdService = birdService;
     }
 
-    @GetMapping(CONTROLLER_NAME)
+    @GetMapping("")
     public String index(Model model){
 
         var locations = birdService.findAll();
@@ -48,7 +43,7 @@ public class BirdSpottingController {
         return "birdspotting";
     }
 
-    @GetMapping(CONTROLLER_NAME + "/{locationName}")
+    @GetMapping("{locationName}")
     public String location(@PathVariable("locationName") String locationName, Model model) {
 
         var location = birdService.findByName(locationName);
@@ -60,7 +55,7 @@ public class BirdSpottingController {
     }
 
 
-    @GetMapping(CONTROLLER_NAME + "/{locationName}/" + ADD_ACTION)
+    @GetMapping("{locationName}/create-new-spotting")
     @ResponseBody
     public String create(@PathVariable("locationName") String locationName, Model model) {
         return "You tried to add a spotting to "+ locationName;
