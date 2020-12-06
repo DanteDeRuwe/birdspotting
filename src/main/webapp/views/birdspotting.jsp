@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html"%>
 <%@ page import = "java.io.*,java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,7 @@
             <c:forEach var="location" items="${locationData.entrySet()}">
                 <tr>
                     <td>
-                        <a href="${path}/${location.getKey()}">${location.getKey()}</a>
+                        <a href="${s:mvcUrl('BSC#location').arg(0, location.getKey()).build()}">${location.getKey()}</a>
                     </td>
                     <td>${location.getValue()}</td>
                 </tr>

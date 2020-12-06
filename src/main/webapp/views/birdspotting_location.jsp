@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html"%>
 <%@ page import = "java.io.*,java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +14,7 @@
         <h1>Overview of spotted birds in ${location.getName()}</h1>
 
         <p>
-            <a href="/${path}/${addAction}">New Spotting</a> - <a href="/${indexPath}">Spotting locations overview</a>
+            <a href="${s:mvcUrl('BSC#create').arg(0, location.getName()).build()}">New Spotting</a> - <a href="${s:mvcUrl('BSC#index').build()}">Spotting locations overview</a>
         </p>
 
         <table>

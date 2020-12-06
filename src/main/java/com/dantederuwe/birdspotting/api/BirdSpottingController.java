@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Map;
@@ -43,23 +44,26 @@ public class BirdSpottingController {
                 );
 
         model.addAttribute("locationData", locationData);
-        model.addAttribute("path", CONTROLLER_NAME);
 
         return "birdspotting";
     }
 
     @GetMapping(CONTROLLER_NAME + "/{locationName}")
-    public String location(Model model, @PathVariable("locationName") String locationName) {
+    public String location(@PathVariable("locationName") String locationName, Model model) {
 
         var location = birdService.findByName(locationName);
         if(location.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
         model.addAttribute("location", location.get());
-        model.addAttribute("indexPath", CONTROLLER_NAME);
-        model.addAttribute("addAction", ADD_ACTION);
-        model.addAttribute("path", CONTROLLER_NAME + "/" + locationName);
 
         return "birdspotting_location";
+    }
+
+
+    @GetMapping(CONTROLLER_NAME + "/{locationName}/" + ADD_ACTION)
+    @ResponseBody
+    public String create(@PathVariable("locationName") String locationName, Model model) {
+        return "You tried to add a spotting to "+ locationName;
     }
 
     @ExceptionHandler(Exception.class)
