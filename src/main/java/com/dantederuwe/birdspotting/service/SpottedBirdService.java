@@ -1,9 +1,9 @@
-package service;
+package com.dantederuwe.birdspotting.service;
+
+import com.dantederuwe.birdspotting.domain.BirdSpotLocation;
 
 import java.util.List;
 import java.util.Optional;
-
-import domain.BirdSpotLocation;
 
 public interface SpottedBirdService {
 

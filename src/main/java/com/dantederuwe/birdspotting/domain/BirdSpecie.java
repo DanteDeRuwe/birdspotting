@@ -1,4 +1,4 @@
-package domain;
+package com.dantederuwe.birdspotting.domain;
 
 public class BirdSpecie {
 	private String name;

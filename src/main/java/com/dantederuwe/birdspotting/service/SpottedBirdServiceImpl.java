@@ -1,12 +1,13 @@
-package service;
+package com.dantederuwe.birdspotting.service;
+
+import com.dantederuwe.birdspotting.domain.BirdSpecie;
+import com.dantederuwe.birdspotting.domain.BirdSpotLocation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import domain.BirdSpecie;
-import domain.BirdSpotLocation;
 
 public class SpottedBirdServiceImpl implements SpottedBirdService {
 	private static final List<BirdSpotLocation> birdSpotLocations = new ArrayList<>();
