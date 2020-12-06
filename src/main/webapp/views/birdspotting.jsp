@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html"%>
 <%@ page import = "java.io.*,java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,7 @@
     <h1>Overview of bird spotting locations:</h1>
 
     <p>Please select your location to add a spotting:</p>
+
     <table>
         <thead>
             <tr>
@@ -23,7 +25,9 @@
         <tbody>
             <c:forEach var="location" items="${locationData.entrySet()}">
                 <tr>
-                    <td>${location.getKey()}</td>
+                    <td>
+                        <a href="${path}/${location.getKey()}">${location.getKey()}</a>
+                    </td>
                     <td>${location.getValue()}</td>
                 </tr>
             </c:forEach>

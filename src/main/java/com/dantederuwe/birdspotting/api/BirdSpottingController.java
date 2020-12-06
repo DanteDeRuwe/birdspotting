@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.tools.JavaFileManager;
 import java.security.cert.CollectionCertStoreParameters;
@@ -20,6 +23,8 @@ import java.util.stream.Collectors;
 @Controller
 public class BirdSpottingController {
 
+    private static final String BASE_URI = "birdspotting";
+
     @Autowired
     private final SpottedBirdService birdService;
 
@@ -27,7 +32,7 @@ public class BirdSpottingController {
         this.birdService = birdService;
     }
 
-    @GetMapping("birdspotting")
+    @GetMapping(BASE_URI)
     public String index(Model model){
 
         var locations = birdService.findAll();
@@ -42,6 +47,14 @@ public class BirdSpottingController {
                 );
 
         model.addAttribute("locationData", locationData);
+        model.addAttribute("path", BASE_URI);
+
         return "birdspotting";
+    }
+
+    @GetMapping(BASE_URI + "/{name}")
+    @ResponseBody
+    public String index(Model model, @PathVariable("name") String name){
+        return name;
     }
 }
