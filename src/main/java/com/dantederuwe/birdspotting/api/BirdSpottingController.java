@@ -2,7 +2,6 @@ package com.dantederuwe.birdspotting.api;
 
 import com.dantederuwe.birdspotting.domain.BirdSpotLocation;
 import com.dantederuwe.birdspotting.domain.SpottedBird;
-import com.dantederuwe.birdspotting.exceptions.NotFoundException;
 import com.dantederuwe.birdspotting.service.SpottedBirdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,7 +49,7 @@ public class BirdSpottingController {
     }
 
     @GetMapping(CONTROLLER_NAME + "/{locationName}")
-    public String location(Model model, @PathVariable("locationName") String locationName) throws NotFoundException {
+    public String location(Model model, @PathVariable("locationName") String locationName) {
 
         var location = birdService.findByName(locationName);
         if(location.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
