@@ -57,4 +57,10 @@ public class BirdSpottingController {
     public String index(Model model, @PathVariable("name") String name){
         return name;
     }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public String handleError(Model model, Exception e){
+        model.addAttribute("exception", e);
+        return "error";
+    }
 }
