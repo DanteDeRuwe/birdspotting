@@ -9,7 +9,7 @@ public class PastOrPresentYearValidator implements ConstraintValidator<PastOrPre
 
     @Override
     public boolean isValid(Integer year, ConstraintValidatorContext constraintValidatorContext) {
-        if (year==null) return false;
+        if (year==null) return true; //another constraint will deal with this
         return year<=Year.now().getValue();
     }
 }
