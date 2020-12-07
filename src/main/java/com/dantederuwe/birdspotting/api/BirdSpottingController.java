@@ -70,12 +70,6 @@ public class BirdSpottingController {
         return "redirect:";
     }
 
-    @ExceptionHandler(Exception.class)
-    public String handleError(Model model, Exception e){
-        model.addAttribute("exception", e);
-        return "error";
-    }
-
     private BirdSpotLocation getLocation(String locationName) {
         var location = birdService.findByName(locationName);
         if(location.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
