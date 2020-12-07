@@ -16,20 +16,23 @@
     </head>
     <body>
         <h1>Create new bird spotting</h1>
-        <form:form method="POST" action="addSpotting" modelAttribute="birdSpecie">
+        <form:form method="POST" action="${s:mvcUrl('BSC#add').arg(0, location.getName()).build()}" modelAttribute="birdSpecie">
             <div>
                 <form:label path="name">Name:</form:label>
                 <form:input path="name"/>
+                <form:errors path="name" cssClass="error"/>
             </div>
 
             <div>
                 <form:label path="yearOfDiscovery">Year of discovery:</form:label>
                 <form:input path="yearOfDiscovery"/>
+                <form:errors path="yearOfDiscovery" cssClass="error"/>
             </div>
 
             <div>
                 <form:label path="code">Book of birds code:</form:label>
                 <form:input path="code"/>
+                <form:errors path="code" cssClass="error"/>
             </div>
 
             <input type="submit" value="Spot new bird"/>

@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -61,10 +62,11 @@ public class BirdSpottingController {
         return "birdspotting_create-new-spotting";
     }
 
-    @PostMapping("{locationName}/addSpotting")
-    public String add(@PathVariable("locationName") String locationName, @ModelAttribute("birdSpecie") BirdSpecie birdSpecie, BindingResult result) {
-        //TODO error handling
+    @PostMapping("{locationName}/create-new-spotting")
+    public String add(@PathVariable("locationName") String locationName, @Valid @ModelAttribute("birdSpecie") BirdSpecie birdSpecie, BindingResult result, Model model) {
         var location = getLocation(locationName);
+        model.addAttribute("location", location);
+        if(result.hasErrors()) return "birdspotting_create-new-spotting";
         location.increaseBirdSpot(birdSpecie);
 
         return "redirect:";
