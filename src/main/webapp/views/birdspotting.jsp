@@ -35,5 +35,6 @@
             </c:forEach>
         </tbody>
     </table>
+    <a href="<c:url value="/logout" />">Stop Spotting</a>
 </body>
 </html>
