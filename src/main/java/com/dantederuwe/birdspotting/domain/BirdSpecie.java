@@ -42,6 +42,11 @@ public class BirdSpecie {
 	public String toString() {
 		return String.format("%s - %d (%s)", getName(), getYearOfDiscovery(), getCode());
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) return true;
+		if (other == null || getClass() != other.getClass()) return false;
+		return getCode().equals(((BirdSpecie) other).getCode());
+	}
 }
