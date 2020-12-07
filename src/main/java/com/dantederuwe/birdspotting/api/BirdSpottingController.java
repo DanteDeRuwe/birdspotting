@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @RequestMapping("birdspotting")
 public class BirdSpottingController {
 
-    @Autowired
     private final SpottedBirdService birdService;
 
     public BirdSpottingController(SpottedBirdService birdService) {

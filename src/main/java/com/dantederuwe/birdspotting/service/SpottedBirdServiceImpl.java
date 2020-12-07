@@ -2,14 +2,12 @@ package com.dantederuwe.birdspotting.service;
 
 import com.dantederuwe.birdspotting.domain.BirdSpecie;
 import com.dantederuwe.birdspotting.domain.BirdSpotLocation;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-@Component
 public class SpottedBirdServiceImpl implements SpottedBirdService {
 	private static final List<BirdSpotLocation> birdSpotLocations = new ArrayList<>();
 	
