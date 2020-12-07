@@ -15,7 +15,7 @@ public class SecurityConfigurer  extends WebSecurityConfigurerAdapter {
         http.formLogin().defaultSuccessUrl("/birdspotting",true);
 
         http.authorizeRequests()
-                .antMatchers("/*").hasAnyRole("SPOTTER", "ADMIN")
+                .antMatchers("/*").hasRole("SPOTTER")
                 .antMatchers("/**/create-new-spotting").hasRole("ADMIN")
                 .and().csrf();
     }
@@ -29,6 +29,6 @@ public class SecurityConfigurer  extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("admin")
                 .password("{noop}eagle")
-                .roles("ADMIN");
+                .roles("SPOTTER","ADMIN");
     }
 }
