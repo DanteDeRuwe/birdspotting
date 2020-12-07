@@ -15,7 +15,7 @@ public class BirdSpecie {
 	@NotNull
     private Integer yearOfDiscovery;
 
-	@Pattern(regexp = "([A-Z]{2}\\d{3})?", message = "{validation.specie.code}")
+	@Pattern(regexp = "([A-Z]{1,2}\\d{3})?", message = "{validation.specie.code}")
 	@NotBlank
     private String code;
 		
