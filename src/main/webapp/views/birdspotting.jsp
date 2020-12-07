@@ -3,14 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 
+<c:set var="req" value="${pageContext.request}" />
+<c:set var="baseURL" value="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../resources/css/style.css">
+    <link rel="stylesheet" href="${baseURL}/resources/css/style.css">
     <title>Birdspotting</title>
 </head>
 <body>
-
     <h1>Overview of bird spotting locations:</h1>
 
     <p>Please select your location to add a spotting:</p>
