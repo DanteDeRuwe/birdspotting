@@ -17,7 +17,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/*").hasRole("SPOTTER")
                 .antMatchers("/**/create-new-spotting").hasRole("ADMIN")
-                .and().csrf();
+                .and().csrf()
+                .and().exceptionHandling().accessDeniedPage("/403");
     }
 
     @Override
