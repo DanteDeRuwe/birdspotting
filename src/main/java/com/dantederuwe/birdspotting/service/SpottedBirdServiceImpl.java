@@ -2,7 +2,6 @@ package com.dantederuwe.birdspotting.service;
 
 import com.dantederuwe.birdspotting.domain.BirdSpecie;
 import com.dantederuwe.birdspotting.domain.BirdSpotLocation;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

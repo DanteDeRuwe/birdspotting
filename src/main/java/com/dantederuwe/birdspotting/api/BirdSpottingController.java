@@ -4,16 +4,13 @@ import com.dantederuwe.birdspotting.domain.BirdSpecie;
 import com.dantederuwe.birdspotting.domain.BirdSpotLocation;
 import com.dantederuwe.birdspotting.domain.SpottedBird;
 import com.dantederuwe.birdspotting.service.SpottedBirdService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
 import javax.validation.Valid;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -28,14 +25,15 @@ public class BirdSpottingController {
 
     @GetMapping("")
     public String index(Model model){
-
         var locations = birdService.findAll();
 
-        Map<String, String> locationData = locations
+        var locationData = locations
                 .stream()
                 .collect(
                         Collectors.toMap(
+                                // Name of the location
                                 BirdSpotLocation::getName,
+                                // String representation of list of birdnames
                                 l -> l.getSpottedBirds().stream().map(SpottedBird::toString).collect(Collectors.toList()).toString()
                         )
                 );
@@ -47,7 +45,6 @@ public class BirdSpottingController {
 
     @GetMapping("{locationName}")
     public String location(@PathVariable("locationName") String locationName, Model model) {
-
         var location = getLocation(locationName);
         model.addAttribute("location", location);
         return "birdspotting_location";
@@ -55,7 +52,6 @@ public class BirdSpottingController {
 
     @GetMapping("{locationName}/create-new-spotting")
     public String create(@PathVariable("locationName") String locationName, Model model) {
-
         var location = getLocation(locationName);
         model.addAttribute("location", location);
         model.addAttribute("birdSpecie", new BirdSpecie("Specie", 2020, "AA000"));
@@ -66,9 +62,11 @@ public class BirdSpottingController {
     public String add(@PathVariable("locationName") String locationName, @Valid @ModelAttribute("birdSpecie") BirdSpecie birdSpecie, BindingResult result, Model model) {
         var location = getLocation(locationName);
         model.addAttribute("location", location);
-        if(result.hasErrors()) return "birdspotting_create-new-spotting";
-        location.increaseBirdSpot(birdSpecie);
 
+        // reload the form in case of validation errors
+        if(result.hasErrors()) return "birdspotting_create-new-spotting";
+
+        location.increaseBirdSpot(birdSpecie);
         return "redirect:";
     }
 

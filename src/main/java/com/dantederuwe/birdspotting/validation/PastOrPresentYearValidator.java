@@ -1,5 +1,4 @@
 package com.dantederuwe.birdspotting.validation;
-import org.springframework.validation.ValidationUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

@@ -1,9 +1,10 @@
 package com.dantederuwe.birdspotting.domain;
 
 import com.dantederuwe.birdspotting.validation.PastOrPresentYear;
-import org.springframework.format.annotation.NumberFormat;
-
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class BirdSpecie {
 

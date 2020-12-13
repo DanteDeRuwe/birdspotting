@@ -1,4 +1,5 @@
 package com.dantederuwe.birdspotting.api;
+
 import com.dantederuwe.birdspotting.domain.BirdSpotLocation;
 import com.dantederuwe.birdspotting.domain.SpottedBird;
 import com.dantederuwe.birdspotting.service.SpottedBirdService;
@@ -24,7 +25,6 @@ public class BirdSpotRestController {
 
     @GetMapping("{locationName}")
     public List<SpottedBird> location(@PathVariable("locationName") String locationName, Model model) {
-
         var location = getLocation(locationName);
         model.addAttribute("location", location);
         return location.getSpottedBirds();
