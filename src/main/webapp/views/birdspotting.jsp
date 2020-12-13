@@ -35,6 +35,9 @@
             </c:forEach>
         </tbody>
     </table>
-    <a href="<c:url value="/logout" />">Stop Spotting</a>
+    <br>
+    <form action="/logout">
+        <input type="submit" value="Stop Spotting"/>
+    </form>
 </body>
 </html>
